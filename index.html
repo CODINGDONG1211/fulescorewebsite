@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <title>Sustainable Aviation Fuel (SAF) Score Calculator</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Sustainable Aviation Fuel (SAF) Score Calculator</h1>
+        <form id="score-form">
+            <div class="input-group">
+                <label for="energy_density">Energy Density (MJ/L) [0-35]:</label>
+                <input type="number" step="0.1" id="energy_density" name="energy_density" min="0" max="35" required>
+            </div>
+
+            <div class="input-group">
+                <label for="cetane_number">Cetane Number [40-60]:</label>
+                <input type="number" step="0.1" id="cetane_number" name="cetane_number" min="40" max="60" required>
+            </div>
+
+            <div class="input-group">
+                <label for="octane_number">Octane Number [85-100]:</label>
+                <input type="number" step="0.1" id="octane_number" name="octane_number" min="85" max="100" required>
+            </div>
+
+            <div class="input-group">
+                <label for="flash_point">Flash Point (°C) [40-60]:</label>
+                <input type="number" step="0.1" id="flash_point" name="flash_point" min="40" max="60" required>
+            </div>
+
+            <div class="input-group">
+                <label for="viscosity">Viscosity (cSt) [1-5, ideal 3]:</label>
+                <input type="number" step="0.1" id="viscosity" name="viscosity" min="1" max="5" required>
+            </div>
+
+            <div class="input-group">
+                <label for="sulfur_content">Sulfur Content (mg/kg) [0-10, lower is better]:</label>
+                <input type="number" step="0.1" id="sulfur_content" name="sulfur_content" min="0" max="10" required>
+            </div>
+
+            <div class="input-group">
+                <label for="thermal_efficiency">Thermal Efficiency (%) [25-35]:</label>
+                <input type="number" step="0.1" id="thermal_efficiency" name="thermal_efficiency" min="25" max="35" required>
+            </div>
+
+            <div class="input-group">
+                <label for="carbon_intensity">Carbon Intensity (gCO₂/MJ) [20-50, lower is better]:</label>
+                <input type="number" step="0.1" id="carbon_intensity" name="carbon_intensity" min="20" max="50" required>
+            </div>
+
+            <div class="input-group">
+                <label for="feedstock_sourcing">Feedstock Sourcing Score [0-10]:</label>
+                <input type="number" step="1" id="feedstock_sourcing" name="feedstock_sourcing" min="0" max="10" required>
+            </div>
+
+            <div class="input-group">
+                <label for="water_usage">Water Usage (L/kg) [0-5, lower is better]:</label>
+                <input type="number" step="0.1" id="water_usage" name="water_usage" min="0" max="5" required>
+            </div>
+
+            <div class="input-group">
+                <label for="blending_ratio">Blending Ratio (%) [0-50]:</label>
+                <input type="number" step="0.1" id="blending_ratio" name="blending_ratio" min="0" max="50" required>
+            </div>
+
+            <div class="input-group">
+                <label for="carbon_footprint">Carbon Footprint (kgCO₂e/L) [0-80, lower is better]:</label>
+                <input type="number" step="0.1" id="carbon_footprint" name="carbon_footprint" min="0" max="80" required>
+            </div>
+
+            <div class="input-group">
+                <label for="EROI">EROI (Energy Return on Investment) [1-10]:</label>
+                <input type="number" step="0.1" id="EROI" name="EROI" min="1" max="10" required>
+            </div>
+
+            <div class="input-group">
+                <label for="co2_emissions">CO₂ Emissions (g/MJ) [0-100, lower is better]:</label>
+                <input type="number" step="0.1" id="co2_emissions" name="co2_emissions" min="0" max="100" required>
+            </div>
+
+            <div class="input-group">
+                <label for="nox_emissions">NOx Emissions (g/MJ) [0-100, lower is better]:</label>
+                <input type="number" step="0.1" id="nox_emissions" name="nox_emissions" min="0" max="100" required>
+            </div>
+
+            <div class="input-group">
+                <label for="pm_emissions">PM Emissions (g/MJ) [0-100, lower is better]:</label>
+                <input type="number" step="0.1" id="pm_emissions" name="pm_emissions" min="0" max="100" required>
+            </div>
+
+            <div class="input-group">
+                <label for="co_emissions">CO Emissions (g/MJ) [0-100, lower is better]:</label>
+                <input type="number" step="0.1" id="co_emissions" name="co_emissions" min="0" max="100" required>
+            </div>
+
+            <div class="input-group">
+                <label for="ch4_emissions">CH₄ Emissions (g/MJ) [0-100, lower is better]:</label>
+                <input type="number" step="0.1" id="ch4_emissions" name="ch4_emissions" min="0" max="100" required>
+            </div>
+
+           
+
+            <button type="button" onclick="calculateScore()">Calculate Score</button>
+        </form>
+        <div id="score-display" class="hidden">
+            <h2>Total Score: <span id="total-score"></span></h2>
+
+            <div class="chart-container">
+                <h3>Pie Chart (Score Breakdown)</h3>
+                <canvas id="pieChart"></canvas>
+                
+            </div>
+            <!-- Add this below your Pie Chart in HTML -->
+            <table id="score-table" class="table">
+                <caption>Parameter Weights and Normalized Scores</caption>
+                <thead>
+                    <tr>
+                        <th>Parameter</th>
+                        <th>Weight</th>
+                        <th>Normalized Score</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Table content will be dynamically generated -->
+                </tbody>
+            </table>
+            <div class="chart-container">
+                <h3>Bar Chart (Fuel Comparison)</h3>
+                <canvas id="barChart"></canvas>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

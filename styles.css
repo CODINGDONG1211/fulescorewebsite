@@ -1,0 +1,172 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* height: 100vh; */
+}
+
+.container {
+    width: 60%;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1, h2, h3 {
+    text-align: center;
+}
+
+.input-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+input[type="number"] {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+
+button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    background-color: #4BC0C0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #36A2EB;
+}
+
+#score-display {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.chart-container {
+    margin-top: 20px;
+}
+
+.chart-container canvas {
+    max-width: 100%;
+    margin: 0 auto;
+    display: block;
+}
+.hidden {
+    display: none;
+}
+
+.chart-container {
+    margin-top: 20px;
+}
+
+/* Large screens */
+@media (min-width: 1200px) {
+    .container {
+      padding: 20px;
+    }
+  }
+  
+  /* Mobile screens */
+  @media (max-width: 600px) {
+    .container {
+      padding: 10px;
+    }
+  }
+  
+  #pieChart {
+    display: block !important;
+    width: 50% !important;
+    height: auto !important;
+}
+
+
+/* Centering the table and giving it a clean appearance */
+.table {
+    margin: 20px auto;
+    border-collapse: collapse;
+    width: 80%;  /* Set table width to 80% of its container */
+    text-align: center;
+    font-family: Arial, sans-serif;
+}
+
+/* Styling for table headers */
+.table th {
+    background-color: #2C3E50;
+    color: white;
+    padding: 10px;
+    font-size: 14px;
+}
+
+/* Styling for table cells */
+.table td {
+    background-color: #f4f4f4;
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid #ddd;  /* Add borders to cells for better visibility */
+}
+
+/* Hover effect for table rows */
+.table tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Styling for the chart container */
+.chart-container {
+    width: 80%;  /* Set chart container to 80% of its parent */
+    margin: 0 auto;  /* Centering the chart */
+}
+
+/* Increase the height of the bar chart */
+#barChart {
+    height: 400px;
+}
+
+/* Style for total score display */
+#score-display {
+    text-align: center;
+    font-size: 20px;
+    margin-top: 20px;
+}
+
+/* Ensure all elements are aligned in the center */
+/* .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 20px;
+} */
+
+/* For the pie chart, adjust the size */
+#pieChart {
+    max-width: 100%;  /* Ensure the pie chart is responsive */
+    height: auto;
+}
+
+
+.table caption {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #2C3E50;  /* Dark Slate Blue color for the caption */
+}
